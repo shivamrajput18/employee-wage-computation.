@@ -1,25 +1,39 @@
-#include<iostream>
+#include <iostream>
 #include <cstdlib>
 #include <ctime>
 
 using namespace std;
 
-void employeeAttendance(){
-   srand(time(0));
-      int randomNum = rand() % 2;
+int employeeDailyWage(int wagePerHour, int fullDayHour);
 
-    if(randomNum==1){
-         cout << "Employee is Present" << endl;
-    }
-    else{
-          cout << "Employee is Absent" << endl;
+void employeeAttendance() {
+    srand(time(0));
+    int randomNum = rand() % 2;
+
+    if (randomNum == 1) {
+        cout << "Employee is Present" << endl;
+
+        int wagePerHour = 20;
+        int fullDayHour = 8;
+
+        if (fullDayHour == 8) {
+            int res = employeeDailyWage(wagePerHour, fullDayHour);
+            cout << "Employee Daily Wage: " << res << endl;
+        }
+
+    } else {
+        cout << "Employee is Absent" << endl;
     }
 }
 
-int main(){
-     cout << "Welcome to employee-wage-computation" << endl;
+int employeeDailyWage(int wagePerHour, int fullDayHour) {
+    return wagePerHour * fullDayHour;
+}
 
-     employeeAttendance();
+int main() {
+    cout << "Welcome to employee-wage-computation" << endl;
 
-     return 0;
+    employeeAttendance();
+
+    return 0;
 }

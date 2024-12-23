@@ -4,52 +4,63 @@
 
 using namespace std;
 
-int employeeDailyWage(int wagePerHour, int fullDayHour);
-int partTimeWage(int wagePerHour, int partTimeHour);
+int calculateDailyWage(int wagePerHour, int fullDayHours) {
+    return wagePerHour * fullDayHours;
+}
+
+int calculatePartTimeWage(int wagePerHour, int partTimeHours) {
+    return wagePerHour * partTimeHours;
+}
 
 void employeeAttendance() {
-    srand(time(0));
-    int randomNum = rand() % 2;
+    srand(time(0));  
+    int randomNum = rand() % 2;  
 
-    if (randomNum == 1) {
-        cout << "Employee is Present" << endl;
+    int wagePerHour = 20;  
 
-         int wagePerHour = 20;
-         int fullDayHour;
-         cout << "Enter Part full Hours: ";
-         cin >> fullDayHour;
+    switch (randomNum) {
+        case 1:  
+            cout << "Employee is Present" << endl;
+            int fullDayHours;
+            cout << "Enter Full-Time Hours : ";
+            cin >> fullDayHours;
 
-        if (fullDayHour == 8) {
-            int res = employeeDailyWage(wagePerHour, fullDayHour);
-            cout << "Employee Daily Wage: " << res << endl;
-        }
+            switch (fullDayHours) {
+                case 8:  
+                    {
+                        int dailyWage = calculateDailyWage(wagePerHour, fullDayHours);
+                        cout << "Employee Daily Wage: " << dailyWage << endl;
+                        break;
+                    }
+                default: 
+                    cout << "Invalid input for full-time hours. Please enter exactly 8 hours." << endl;
+            }
 
-        int partTimeHour;
-        cout << "Enter Part Time Hours: ";
-        cin >> partTimeHour;
-        
-        if (partTimeHour == 4) {
-            int res = partTimeWage(wagePerHour, partTimeHour);
-            cout << "Employee PartTime Wage: " << res << endl;
-        } else {
-            cout << "Invalid part-time hours. No wage calculated." << endl;
-        }
+            int partTimeHours;
+            cout << "Enter Part-Time Hours : ";
+            cin >> partTimeHours;
 
-    } else {
-        cout << "Employee is Absent" << endl;
+            switch (partTimeHours) {
+                case 4:  
+                    {
+                        int partTimeWage = calculatePartTimeWage(wagePerHour, partTimeHours);
+                        cout << "Employee Part-Time Wage: " << partTimeWage << endl;
+                        break;
+                    }
+                default:  
+                    cout << "Invalid input for part-time hours. Please enter exactly 4 hours." << endl;
+            }
+            break;
+
+        case 0:  
+            cout << "Employee is Absent" << endl;
+            break;
+
     }
 }
 
-int employeeDailyWage(int wagePerHour, int fullDayHour) {
-    return wagePerHour * fullDayHour;
-}
-
-int partTimeWage(int wagePerHour, int partTimeHour) {
-    return wagePerHour * partTimeHour;
-}
-
 int main() {
-    cout << "Welcome to employee-wage-computation" << endl;
+    cout << "Welcome to Employee Wage Computation" << endl;
 
     employeeAttendance();
 

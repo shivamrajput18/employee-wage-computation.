@@ -4,50 +4,46 @@
 
 using namespace std;
 
-int calculateDailyWage(int wagePerHour, int dayHours) {
+int calculateDailyWage(int wagePerHour, int dayHours)
+{
     return wagePerHour * dayHours;
 }
 
-void employeeAttendance() {
-    srand(time(0));  
-    int randomNum = rand() % 2;  
+void employeeAttendance()
+{
+    srand(time(0));
+    int wagePerHour = 20;
+    int totalWage = 0;
 
-    int wagePerHour = 20;  
+    for (int i = 1; i <= 20; i++)
+    {
+        int randomNum = rand() % 2;
 
-    switch (randomNum) {
-        case 1: { 
-            cout << "Employee is Present" << endl;
-            int dayHours;
-            cout << "Enter Time Hours (4 or 8) : ";
-            cin >> dayHours;
-
-            switch (dayHours) {
-                case 8: { 
-                    int dailyWage = calculateDailyWage(wagePerHour, dayHours);
-                    cout << "Employee Daily Wage: " << dailyWage << endl;
-                    break;
-                }
-                case 4: { 
-                    int partTimeWage = calculateDailyWage(wagePerHour, dayHours);
-                    cout << "Employee Part-Time Wage: " << partTimeWage << endl;
-                    break;
-                }
-                default: 
-                    cout << "Invalid input. Please enter 4 or 8 hours." << endl;
-            }
-            break; 
-        }
-
-        case 0: { 
-            cout << "Employee is Absent" << endl;
+        switch (randomNum)
+        {
+          case 1:
+          {
+            int dayHours = (rand() % 2 == 0) ? 4 : 8;
+            int dailyWage = calculateDailyWage(wagePerHour, dayHours);
+            totalWage += dailyWage;
+            cout << "Day " << i << ": Employee is Present, Worked Hours: " << dayHours
+                 << ", Daily Wage: " << dailyWage << endl;
             break;
+          }
+
+          case 0:
+          {
+            cout << "Day " << i << ": Employee is Absent" << endl;
+            break;
+          }
         }
-        default:
-            cout << "Unexpected error in attendance computation." << endl;
     }
+
+    cout << "\nTotal Wage for 20 Days: " << totalWage << endl;
 }
 
-int main() {
+int main()
+{
     cout << "Welcome to Employee Wage Computation" << endl;
 
     employeeAttendance();
